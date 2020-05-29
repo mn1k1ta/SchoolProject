@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SchoolProject.Models.TeachingModel>
+
+@if (User.Identity.IsAuthenticated)
+{
+   
+
+
+    <p>
+        @Html.ActionLink("Додати навчальний план", "Create", new { teacherId = @ViewBag.TeacherId })
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Class)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Teacher)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Class.Name)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teacher.Name)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Редагувати</a> |
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-danger" style="text-align:center" role="alert">
+        <h1>Ви не увійшли в систему!</h1>
+
+        <a asp-controller="Account" asp-action="Login">Вхід</a>
+        <a asp-controller="Account" asp-action="Register">Реєстація</a>
+    </div>
+}

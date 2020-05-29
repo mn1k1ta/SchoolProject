@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{ 
+}
+else
+{
+<div class="alert alert-danger" style="text-align:center" role="alert">
+    <h1>Ви не увійшли в систему!</h1>
+
+    <a asp-controller="Account" asp-action="Login">Вхід</a>
+    <a asp-controller="Account" asp-action="Register">Реєстація</a>
+</div>
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
